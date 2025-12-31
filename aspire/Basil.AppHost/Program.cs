@@ -2,10 +2,12 @@ using Aspire.Hosting;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
-// Add FastAPI Backend using Executable instead of PythonProject
-var backend = builder.AddExecutable("basil-backend", "python", "../../backend", "-m", "uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8000", "--reload")
+// Add FastAPI Backend with virtual environment
+var backend = builder.AddPythonApp("basil-backend", "../../backend", "api", "app")
     .WithHttpEndpoint(port: 8000, name: "api")
     .WithEnvironment("PYTHONUNBUFFERED", "1")
+    .WithEnvironment("HOST", "0.0.0.0")
+    .WithEnvironment("PORT", "8000")
     .WithExternalHttpEndpoints();
 
 // Add React Frontend
