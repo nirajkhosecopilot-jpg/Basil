@@ -98,6 +98,18 @@ def read_root():
     }
 
 
+@app.get("/health")
+def health_check():
+    """Health check endpoint for Aspire"""
+    return {"status": "healthy"}
+
+
+@app.get("/alive")
+def alive_check():
+    """Liveness check endpoint for Aspire"""
+    return {"status": "alive"}
+
+
 @app.get("/api/models")
 def get_available_models():
     """Get all available LLM models"""
