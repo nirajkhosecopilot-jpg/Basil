@@ -45,7 +45,22 @@ Basil is a **meta-tool** for the design phase:
 
 ## Quick Start
 
-### Option 1: Web UI (Recommended)
+### Option 1: .NET Aspire (Recommended - All-in-One)
+
+Run everything with one command and get a beautiful monitoring dashboard:
+
+```bash
+cd aspire/Basil.AppHost
+dotnet run
+```
+
+- 🎯 **Dashboard**: http://localhost:15000 (monitoring, logs, traces)
+- 🌐 **Basil UI**: http://localhost:3000 (click link in dashboard)
+- 🔌 **API**: http://localhost:8000
+
+See [docs/ASPIRE_GUIDE.md](docs/ASPIRE_GUIDE.md) for complete guide.
+
+### Option 2: Web UI (Manual)
 
 Run Basil with a beautiful React interface:
 
@@ -65,7 +80,7 @@ Visit http://localhost:3000 to use the interactive UI!
 
 See [docs/WEB_UI_GUIDE.md](docs/WEB_UI_GUIDE.md) for detailed instructions.
 
-### Option 2: Python API
+### Option 3: Python API
 
 ```python
 from basil import ArchitectureDesigner
@@ -88,12 +103,26 @@ print(f"Estimated cost: ${architecture.estimate_cost()}/month")
 
 ## Installation
 
-### Python Framework
+### .NET Aspire (Recommended)
+```bash
+# Install .NET 8.0 SDK
+# Windows: winget install Microsoft.DotNet.SDK.8
+# macOS: brew install dotnet@8
+# Linux: https://dot.net
+
+# Install Aspire workload
+dotnet workload install aspire
+
+# Run!
+cd aspire/Basil.AppHost && dotnet run
+```
+
+### Python Framework Only
 ```bash
 pip install -r requirements.txt
 ```
 
-### Web UI
+### Web UI (Manual)
 ```bash
 # Backend
 cd backend && pip install -r requirements.txt
@@ -102,7 +131,7 @@ cd backend && pip install -r requirements.txt
 cd frontend && npm install
 ```
 
-### Docker (All-in-One)
+### Docker Compose
 ```bash
 docker-compose up --build
 ```
