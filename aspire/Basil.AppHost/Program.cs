@@ -2,15 +2,17 @@ using Aspire.Hosting;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
-// Add FastAPI Backend using Dockerfile (works with all Aspire versions)
-var backend = builder.AddDockerfile("basil-backend", "../../", "Dockerfile.backend")
-    .WithHttpEndpoint(port: 8000, targetPort: 8000, name: "api")
+// Add FastAPI Backend - Using executable (no Docker required)
+var pythonPath = OperatingSystem.IsWindows() ? "python" : "python3";
+var backend = builder.AddExecutable("basil-backend", pythonPath, "../../backend",
+        "-m", "uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8000", "--reload")
+    .WithHttpEndpoint(port: 8000, name: "api")
     .WithExternalHttpEndpoints();
 
-// Add React Frontend using Dockerfile
-var frontend = builder.AddDockerfile("basil-frontend", "../../frontend", "Dockerfile")
-    .WithHttpEndpoint(port: 3000, targetPort: 3000, name: "ui")
-    .WithEnvironment("REACT_APP_API_URL", "http://localhost:8000")
+// Add React Frontend - Using NPM (no Docker required)
+var frontend = builder.AddNpmApp("basil-frontend", "../../frontend", "start")
+    .WithHttpEndpoint(port: 3000, name: "ui")
+    .WithEnvironment("BROWSER", "none")
     .WithExternalHttpEndpoints()
     .WaitFor(backend);
 
