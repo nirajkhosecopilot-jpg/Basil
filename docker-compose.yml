@@ -9,9 +9,8 @@ services:
       - "8000:8000"
     environment:
       - PYTHONUNBUFFERED=1
-    volumes:
-      - ./basil:/app/basil
-      - ./backend:/app/backend
+    networks:
+      - basil-network
 
   frontend:
     build:
@@ -21,7 +20,15 @@ services:
       - "3000:3000"
     environment:
       - REACT_APP_API_URL=http://localhost:8000
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
     depends_on:
       - backend
     stdin_open: true
     tty: true
+    networks:
+      - basil-network
+
+networks:
+  basil-network:
+    driver: bridge
