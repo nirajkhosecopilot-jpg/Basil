@@ -219,3 +219,5 @@ aspire/Basil.ServiceDefaults/obj/project.nuget.cache
 *.dll
 *.pdb
 *.cache
+*.v2
+*.BuildWithSkipAnalyzers
