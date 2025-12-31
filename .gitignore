@@ -216,3 +216,6 @@ aspire/Basil.ServiceDefaults/obj/Debug/net8.0/Basil.ServiceDefaults.GlobalUsings
 aspire/Basil.ServiceDefaults/obj/project.assets.json
 aspire/Basil.ServiceDefaults/obj/project.nuget.cache
 *.vsidx
+*.dll
+*.pdb
+*.cache
