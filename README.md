@@ -45,6 +45,28 @@ Basil is a **meta-tool** for the design phase:
 
 ## Quick Start
 
+### Option 1: Web UI (Recommended)
+
+Run Basil with a beautiful React interface:
+
+```bash
+# Start backend
+cd backend
+pip install -r requirements.txt
+python -m uvicorn api:app --reload
+
+# In another terminal, start frontend
+cd frontend
+npm install
+npm start
+```
+
+Visit http://localhost:3000 to use the interactive UI!
+
+See [docs/WEB_UI_GUIDE.md](docs/WEB_UI_GUIDE.md) for detailed instructions.
+
+### Option 2: Python API
+
 ```python
 from basil import ArchitectureDesigner
 
@@ -66,21 +88,46 @@ print(f"Estimated cost: ${architecture.estimate_cost()}/month")
 
 ## Installation
 
+### Python Framework
 ```bash
 pip install -r requirements.txt
+```
+
+### Web UI
+```bash
+# Backend
+cd backend && pip install -r requirements.txt
+
+# Frontend
+cd frontend && npm install
+```
+
+### Docker (All-in-One)
+```bash
+docker-compose up --build
 ```
 
 ## Project Structure
 
 ```
-basil/
-├── core/           # Core framework components
-├── agents/         # Agent implementations
-├── analyzers/      # Problem analysis tools
-├── selectors/      # LLM selection logic
-├── generators/     # Architecture generators
-├── examples/       # Example use cases
-└── tests/          # Test suite
+Basil/
+├── basil/              # Core Python framework
+│   ├── core/           # Models and designer
+│   ├── analyzers/      # Problem analysis
+│   ├── selectors/      # LLM selection
+│   └── utils/          # Utilities
+├── backend/            # FastAPI backend
+│   ├── api.py          # REST API
+│   └── requirements.txt
+├── frontend/           # React UI (Tailwind CSS)
+│   ├── src/
+│   │   ├── components/ # React components
+│   │   └── App.js
+│   └── package.json
+├── examples/           # Python examples
+├── tests/              # Test suite
+├── docs/               # Documentation
+└── docker-compose.yml  # Docker setup
 ```
 
 ## Documentation

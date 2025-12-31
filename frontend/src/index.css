@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.agent-card {
+  transition: all 0.3s ease;
+}
+
+.agent-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.agent-coordinator {
+  border-left: 4px solid #8b5cf6;
+}
+
+.agent-specialist {
+  border-left: 4px solid #3b82f6;
+}
+
+.agent-executor {
+  border-left: 4px solid #10b981;
+}
+
+.agent-analyzer {
+  border-left: 4px solid #f59e0b;
+}
+
+.agent-validator {
+  border-left: 4px solid #ef4444;
+}
