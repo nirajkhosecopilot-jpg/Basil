@@ -2,10 +2,9 @@ using Aspire.Hosting;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
-// Add FastAPI Backend - Using executable (no Docker required)
-var pythonPath = OperatingSystem.IsWindows() ? "python" : "python3";
-var backend = builder.AddExecutable("basil-backend", pythonPath, "../../backend",
-        "-m", "uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8000", "--reload")
+// Add FastAPI Backend - Using startup script with virtual environment support
+var backendScript = OperatingSystem.IsWindows() ? "start.bat" : "./start.sh";
+var backend = builder.AddExecutable("basil-backend", backendScript, "../../backend")
     .WithHttpEndpoint(port: 8000, name: "api")
     .WithExternalHttpEndpoints();
 
